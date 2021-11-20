@@ -1,0 +1,13 @@
+{
+    "name": "SuperValou.UniKit.Editor.Tests",
+    "references": [
+        "GUID:7d61cae10b64dbe47918588b0c5aec45"
+    ],
+    "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}

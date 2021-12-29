@@ -30,6 +30,23 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         }
 
         [UnityTest]
+        public IEnumerator GetOrThrow_WITH_ValidInterface_SHOULD_ReturnInterface()
+        {
+            GameObject emptyPrefab = new GameObject("TestGameObject");
+            var gameObj = Object.Instantiate(emptyPrefab);
+            var bazComponent = gameObj.AddComponent<BazComponent>();
+
+            yield return null;
+
+            var baz = bazComponent.GetOrThrow<IBaz>();
+
+            yield return null;
+
+            Assert.IsNotNull(baz);
+            Assert.AreEqual(typeof(BazComponent), baz.GetType());
+        }
+
+        [UnityTest]
         public IEnumerator GetOrThrow_WITH_InvalidComponent_SHOULD_Throw()
         {
             GameObject emptyPrefab = new GameObject("TestGameObject");
@@ -39,6 +56,18 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
             yield return null;
 
             Assert.Throws<ArgumentException>(() => foo.GetOrThrow<BarComponent>());
+        }
+
+        [UnityTest]
+        public IEnumerator GetOrThrow_WITH_InvalidInterface_SHOULD_Throw()
+        {
+            GameObject emptyPrefab = new GameObject("TestGameObject");
+            var gameObj = Object.Instantiate(emptyPrefab);
+            var foo = gameObj.AddComponent<FooComponent>();
+
+            yield return null;
+
+            Assert.Throws<ArgumentException>(() => foo.GetOrThrow<IBaz>());
         }
 
         [UnityTest]

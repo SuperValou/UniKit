@@ -6,7 +6,6 @@ namespace Packages.UniKit.Runtime.Extensions
     public static class GameObjectExtensions
     {
         public static TComponent GetOrThrow<TComponent>(this GameObject gameObj)
-            where TComponent : Component
         {
             if (ReferenceEquals(gameObj, null))
             {

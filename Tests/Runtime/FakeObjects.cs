@@ -13,4 +13,13 @@ namespace Packages.UniKit.Tests.Runtime
 
     }
 
+    public interface IBaz
+    {
+
+    }
+
+    public class BazComponent : MonoBehaviour, IBaz
+    {
+
+    }
 }

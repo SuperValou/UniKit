@@ -20,17 +20,5 @@ namespace Packages.UniKit.Runtime.Extensions
 
             return component;
         }
-
-        public static bool IsOnLayer(this GameObject gameObject, LayerMask layerMask)
-        {
-            if (gameObject == null)
-            {
-                throw new ArgumentNullException(nameof(gameObject));
-            }
-
-            int gameObjectLayerMask = 1 << gameObject.layer;
-            int overlap = gameObjectLayerMask & layerMask.value;
-            return overlap != 0;
-        }
     }
 }

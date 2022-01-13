@@ -1,3 +1,11 @@
+# [1.0.0-rc01] - 2022-01-13
+- Extension methods
+	- Removed GetEnumMemberAttribute method on Enums
+	- Removed IsOnLayer method on GameObjects
+	- Added SafeInvoke on Action (without argument)
+- Tests
+	- Added unit tests to reach 100% coverage
+
 # [0.1.0-alpha02] - 2021-12-29
 - Extension methods
 	- GetOrThrow<TComponent> methods no longer require TComponent to inherit from the Component class

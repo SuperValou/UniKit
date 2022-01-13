@@ -1,0 +1,11 @@
+{
+  "name": "com.supervalou.unikit",
+  "version": "1.0.0",
+  "displayName": "UniKit",
+  "description": "A set of basic utilities for Unity.",
+  "unity": "2019.4", 
+  "author": {
+    "name": "SuperValou",    
+    "url": "https://github.com/SuperValou"
+  }
+}

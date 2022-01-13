@@ -5,6 +5,12 @@ namespace Packages.UniKit.Runtime.Extensions
 {
     public static class GameObjectExtensions
     {
+        /// <summary>
+        /// Returns the component of type TComponent attached to the game object, or throws an exception if it's missing.
+        /// </summary>
+        /// <typeparam name="TComponent">Type of component to get.</typeparam>
+        /// <param name="gameObj">The game object.</param>
+        /// <returns>The component.</returns>
         public static TComponent GetOrThrow<TComponent>(this GameObject gameObj)
         {
             if (ReferenceEquals(gameObj, null))

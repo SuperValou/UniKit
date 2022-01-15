@@ -2,38 +2,6 @@
 # UniKit
 A set of basic utilities for Unity.
 
-## Persistent variables
-
-**Description**
-
-A "persistent variable" is a ScriptableObject holding some data. Persistent variables are useful to communicate data accross multiple Scenes, like the Vector3 representing the player position for example.
-
-Persistent variables are available by default for `bool`, `float`, `int`, `string`, `Vector3`, and `Quaternion`, but any struct (like an `enum`) can also be created by inheriting from the `Persistent<TStruct>` class.
-
-**Example**
-```csharp
-// Component put on a game object in Scene1
-public class Player : MonoBehaviour
-{
-	public PersistentVector3 playerPosition;
-
-	void Update()
-	{
-		playerPosition.Set(this.transform.position);
-	}
-}
-
-// Component put on a game object in Scene2
-public class Follower : MonoBehaviour
-{
-	public PersistentVector3 playerPosition;
-
-	void Update()
-	{
-		this.transform.position = playerPosition.Value;
-	}
-}
-```
 
 ## GameObject pooling
 **Description**
@@ -83,6 +51,41 @@ public class Bullet : PooledMonoBehaviour
 	}
 }
 ```
+
+
+## Persistent variables
+
+**Description**
+
+A "persistent variable" is a ScriptableObject holding some data. Persistent variables are useful to communicate data accross multiple Scenes, like the Vector3 representing the player position for example.
+
+Persistent variables are available by default for `bool`, `float`, `int`, `string`, `Vector3`, and `Quaternion`, but any struct (like an `enum`) can also be created by inheriting from the `Persistent<TStruct>` class.
+
+**Example**
+```csharp
+// Component put on a game object in Scene1
+public class Player : MonoBehaviour
+{
+	public PersistentVector3 playerPosition;
+
+	void Update()
+	{
+		playerPosition.Set(this.transform.position);
+	}
+}
+
+// Component put on a game object in Scene2
+public class Follower : MonoBehaviour
+{
+	public PersistentVector3 playerPosition;
+
+	void Update()
+	{
+		this.transform.position = playerPosition.Value;
+	}
+}
+```
+
 
 ## Extension methods
 ### MonoBehaviourExtensions.GetOrThrow

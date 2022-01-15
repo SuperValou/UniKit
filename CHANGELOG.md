@@ -1,3 +1,11 @@
+
+# [1.0.0] - 2022-01-13
+*Summary* 
+1.0.0 includes the following content:
+-   Extension methods
+    -   GetOrThrow() on gameObjects and monobehaviours
+    -   SafeInvoke() on Action/events
+  
 ## [1.0.0-rc02] - 2022-01-13
 - Fix package info
 - Add documentation

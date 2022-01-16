@@ -2,6 +2,8 @@
 # UniKit
 A set of basic utilities for Unity.
 
+![version](https://img.shields.io/badge/version-1.1.0-blue)
+![coverage](https://img.shields.io/badge/coverage-100%25-green)
 
 ## GameObject pooling
 **Description**

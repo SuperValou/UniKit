@@ -13,8 +13,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_ValidGameObject_SHOULD_ReturnComponent()
         {
-            GameObject emptyPrefab = new GameObject("TestGameObject");
-            var gameObj = Object.Instantiate(emptyPrefab);
+            var gameObj = new GameObject("TestGameObject");
             gameObj.AddComponent<FooComponent>();
 
             yield return null;
@@ -30,8 +29,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_ValidInterface_SHOULD_ReturnInterface()
         {
-            GameObject emptyPrefab = new GameObject("TestGameObject");
-            var gameObj = Object.Instantiate(emptyPrefab);
+            var gameObj = new GameObject("TestGameObject");
             gameObj.AddComponent<BazComponent>();
 
             yield return null;
@@ -47,8 +45,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_InvalidComponent_SHOULD_Throw()
         {
-            GameObject emptyPrefab = new GameObject("TestGameObject");
-            var gameObj = Object.Instantiate(emptyPrefab);
+            var gameObj = new GameObject("TestGameObject");
 
             yield return null;
 
@@ -58,9 +55,8 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_InvalidInterface_SHOULD_Throw()
         {
-            GameObject emptyPrefab = new GameObject("TestGameObject");
-            var gameObj = Object.Instantiate(emptyPrefab);
-            
+            var gameObj = new GameObject("TestGameObject");
+
             yield return null;
 
             Assert.Throws<ArgumentException>(() => gameObj.GetOrThrow<IBaz>());
@@ -69,8 +65,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_DestroyedGameObject_SHOULD_Throw()
         {
-            GameObject emptyPrefab = new GameObject("TestGameObject");
-            var gameObj = Object.Instantiate(emptyPrefab);
+            var gameObj = new GameObject("TestGameObject");
             gameObj.AddComponent<FooComponent>();
 
             yield return null;

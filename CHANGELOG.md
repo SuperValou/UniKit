@@ -1,16 +1,22 @@
+# 1.1.0
+**2022-01-16**
+- Added PersistentVariables (scriptable objects holding a struct)
+- Added gameObject pooling
 
-# [1.0.0] - 2022-01-13
-*Summary* 
-1.0.0 includes the following content:
--   Extension methods
+# 1.0.0
+**2022-01-13**
+
+- Added Extension methods:
     -   GetOrThrow() on gameObjects and monobehaviours
     -   SafeInvoke() on Action/events
   
-## [1.0.0-rc02] - 2022-01-13
+## [1.0.0-rc02]
+2022-01-13
 - Fix package info
 - Add documentation
 
-## [1.0.0-rc01] - 2022-01-13
+## [1.0.0-rc01]
+2022-01-13
 - Extension methods
 	- Removed GetEnumMemberAttribute method on Enums
 	- Removed IsOnLayer method on GameObjects
@@ -18,7 +24,8 @@
 - Tests
 	- Added unit tests to reach 100% coverage
 
-## [0.1.0-alpha02] - 2021-12-29
+## [0.1.0-alpha02]
+2021-12-29
 - Extension methods
 	- GetOrThrow<TComponent> methods no longer require TComponent to inherit from the Component class
 - Tests

@@ -92,7 +92,7 @@ public class Follower : MonoBehaviour
 
 **Description**
 
-Returns the component of type TComponent attached to this game object, or throws an exception if it's missing.
+Returns the component of type `TComponent` attached to this game object, or throws an exception if it's missing.
 
 
 **Declaration**
@@ -119,7 +119,7 @@ public class RedMesh : MonoBehaviour
 
 **Description**
 
-Invoke all registered callbacks, even if some of them throw an exception. Exceptions get logged to Debug.LogError instead.
+Invoke all registered callbacks, even if some of them throw an exception. Exceptions get logged to `Debug.LogError` instead.
 
 
 **Declaration**
@@ -140,10 +140,10 @@ public class Foo
 {
     public event Action OnEvent;
 
-    public void Execute()
+    public void FireEvent()
     {
-	foo.OnEvent += () => throw new InvalidOperationException();
-        foo.OnEvent += () => Debug.Log("Hello");
+	OnEvent += () => throw new InvalidOperationException();
+        OnEvent += () => Debug.Log("Hello");
         
         OnEvent.SafeInvoke(); // will always print Hello
     }

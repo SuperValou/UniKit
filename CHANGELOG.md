@@ -1,5 +1,5 @@
 # 1.1.0
-**2022-01-15**
+**2022-01-16**
 - Added PersistentVariables (scriptable objects holding a struct)
 - Added gameObject pooling
 

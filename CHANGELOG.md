@@ -1,3 +1,9 @@
+# 1.2.0
+**2022-02-02**
+- Added Trigger component
+- Added custom UnityEvents (UnityFloatEvent, UnityColliderEvent)
+- Added ReadOnly attribute (for the Inspector)
+
 # 1.1.0
 **2022-01-16**
 - Added PersistentVariables (scriptable objects holding a struct)
@@ -9,7 +15,8 @@
 - Added Extension methods:
     -   GetOrThrow() on gameObjects and monobehaviours
     -   SafeInvoke() on Action/events
-  
+
+# Old
 ## [1.0.0-rc02]
 2022-01-13
 - Fix package info
@@ -31,7 +38,8 @@
 - Tests
 	- Added tests to GetOrThrow an interface
 	
-## [0.1.0-alpha01] - 2021-11-19
+## [0.1.0-alpha01] 
+2021-11-19
 - Extension methods
 	- Added GetOrThrow<TComponent>() on gameObjects and monobehaviours
 	- Added IsOnLayer() on gameObjects

@@ -12,10 +12,18 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         private readonly Vector3 _testPosition = Vector3.one;
         private readonly Quaternion _testRotation = Quaternion.LookRotation(Vector3.one);
 
+        private readonly GameObjectManager _manager = new GameObjectManager();
+
+        [TearDown]
+        public void TearDown()
+        {
+            _manager.DestroyAll();
+        }
+
         [UnityTest]
         public IEnumerator InitParentPool_WITH_ValidPool_SHOULD_InitProperly()
         {
-            GameObject pooledGameObject = new GameObject("PooledGameObject");
+            GameObject pooledGameObject = _manager.Instantiate("PooledGameObject");
             var pooled = pooledGameObject.AddComponent<DummyPooled>();
 
             yield return null;
@@ -30,7 +38,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator InitParentPool_WITH_SomeOtherPool_SHOULD_Throw()
         {
-            GameObject pooledGameObject = new GameObject("PooledGameObject");
+            GameObject pooledGameObject = _manager.Instantiate("PooledGameObject");
             var pooled = pooledGameObject.AddComponent<DummyPooled>();
 
             var fakePool1 = new FakePool();
@@ -45,7 +53,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator InitParentPool_WITH_Null_SHOULD_Throw()
         {
-            GameObject pooledGameObject = new GameObject("PooledGameObject");
+            GameObject pooledGameObject = _manager.Instantiate("PooledGameObject");
             var pooled = pooledGameObject.AddComponent<DummyPooled>();
 
             yield return null;
@@ -56,7 +64,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator RespawnAt_WITH_ValidPositionAndRotation_SHOULD_ReturnInstanceAtCorrectPositionAndRotation()
         {
-            GameObject pooledGameObject = new GameObject("PooledGameObject");
+            GameObject pooledGameObject = _manager.Instantiate("PooledGameObject");
             var pooled = pooledGameObject.AddComponent<DummyPooled>();
             
             yield return null;
@@ -73,7 +81,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator RespawnAt_WITH_SeveralCalls_SHOULD_CallRestartOnlyOnce()
         {
-            GameObject pooledGameObject = new GameObject("PooledGameObject");
+            GameObject pooledGameObject = _manager.Instantiate("PooledGameObject");
             var pooled = pooledGameObject.AddComponent<DummyPooled>();
 
             yield return null;
@@ -93,7 +101,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator Disable_WITH_NoArg_SHOULD_DisableGameObject()
         {
-            GameObject pooledGameObject = new GameObject("PooledGameObject");
+            GameObject pooledGameObject = _manager.Instantiate("PooledGameObject");
             var pooled = pooledGameObject.AddComponent<DummyPooled>();
 
             var fakePool = new FakePool();

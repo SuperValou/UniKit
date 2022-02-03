@@ -2,8 +2,8 @@
 # UniKit
 A set of basic utilities for Unity.
 
-![version](https://img.shields.io/badge/version-1.1.0-blue)
-![coverage](https://img.shields.io/badge/coverage-100%25-green)
+![version](https://img.shields.io/badge/version-1.2.0-blue)
+![coverage](https://img.shields.io/badge/coverage-96%25-green)
 
 ## GameObject pooling
 **Description**
@@ -54,7 +54,6 @@ public class Bullet : PooledMonoBehaviour
 }
 ```
 
-
 ## Persistent variables
 
 **Description**
@@ -88,9 +87,30 @@ public class Follower : MonoBehaviour
 }
 ```
 
+## Trigger
+
+**Description**
+
+A component firing some UnityEvents when the `OnTriggerEnter` and `OnTriggerExit` methods gets called. The involved Collider is also passed to the fired events if needed. 
+
+Useful to avoid hard-coding these two methods into other MonoBehaviours, freeing them from having to care about trigger collision.
+
+**Example**
+
+```csharp
+public class MessageDisplayer : MonoBehaviour
+{
+	// Example of a method to call from one of the Trigger event (through the Inspector)
+	// instead of rewriting OnTriggerEnter and needing to have a collider
+	public void DisplayMessage()
+	{		
+		Debug.Log("Hello!");
+	}
+}
+```
 
 ## Extension methods
-### MonoBehaviourExtensions.GetOrThrow
+### GetOrThrow
 
 **Description**
 
@@ -117,7 +137,7 @@ public class RedMesh : MonoBehaviour
 	}
 }
 ```
-### DelegateExtensions.SafeInvoke
+### SafeInvoke
 
 **Description**
 

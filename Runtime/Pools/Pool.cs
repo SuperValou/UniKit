@@ -91,7 +91,7 @@ namespace Packages.UniKit.Runtime.Pools
                 {
                     throw new ArgumentException($"Instance {instance} is already disabled. " +
                                                 $"Did you call {nameof(Disable)} twice with the same object? " +
-                                                $"This could occur if {typeof(TPooled).Name} calls its {nameof(PooledMonoBehaviour.Disable)} method" +
+                                                $"This could occur if {typeof(TPooled).Name} calls its {nameof(PooledMonoBehaviour.Disable)} method " +
                                                 $"several time during the same frame.");
                 }
 

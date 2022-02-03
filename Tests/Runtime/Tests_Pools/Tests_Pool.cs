@@ -13,13 +13,21 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         private readonly Vector3 _testPosition = Vector3.one;
         private readonly Quaternion _testRotation = Quaternion.LookRotation(Vector3.forward);
 
+        private readonly GameObjectManager _manager = new GameObjectManager();
+
+        [TearDown]
+        public void TearDown()
+        {
+            _manager.DestroyAll();
+        }
+
         [UnityTest]
         public IEnumerator Spawn_WITH_AvailableInstances_SHOULD_ReturnInstance()
         {
-            GameObject poolGameObject = new GameObject("TestPool");
+            GameObject poolGameObject = _manager.Instantiate("TestPool");
             var pool = poolGameObject.AddComponent<DummyPool>();
             
-            GameObject pooledPrefab = new GameObject("PooledPrefab");
+            GameObject pooledPrefab = _manager.Instantiate("PooledPrefab");
             var pooled = pooledPrefab.AddComponent<DummyPooled>();
 
             pool.prefab = pooled;
@@ -38,10 +46,10 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator IPoolSpawn_WITH_AvailableInstances_SHOULD_ReturnInstance()
         {
-            GameObject poolGameObject = new GameObject("TestPool");
+            GameObject poolGameObject = _manager.Instantiate("TestPool");
             var pool = poolGameObject.AddComponent<DummyPool>();
 
-            GameObject pooledPrefab = new GameObject("PooledPrefab");
+            GameObject pooledPrefab = _manager.Instantiate("PooledPrefab");
             var pooled = pooledPrefab.AddComponent<DummyPooled>();
 
             pool.prefab = pooled;
@@ -60,10 +68,10 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator Spawn_WITH_NotEnoughInstances_SHOULD_ReturnNewInstance()
         {
-            GameObject poolGameObject = new GameObject("TestPool");
+            GameObject poolGameObject = _manager.Instantiate("TestPool");
             var pool = poolGameObject.AddComponent<DummyPool>();
 
-            GameObject pooledPrefab = new GameObject("PooledPrefab");
+            GameObject pooledPrefab = _manager.Instantiate("PooledPrefab");
             var pooled = pooledPrefab.AddComponent<DummyPooled>();
 
             pool.prefab = pooled;
@@ -83,10 +91,10 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator Disable_WITH_ValidInstance_SHOULD_PutInstanceBackIntoPool()
         {
-            GameObject poolGameObject = new GameObject("TestPool");
+            GameObject poolGameObject = _manager.Instantiate("TestPool");
             var pool = poolGameObject.AddComponent<DummyPool>();
 
-            GameObject pooledPrefab = new GameObject("PooledPrefab");
+            GameObject pooledPrefab = _manager.Instantiate("PooledPrefab");
             var pooled = pooledPrefab.AddComponent<DummyPooled>();
 
             pool.prefab = pooled;
@@ -108,10 +116,10 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator Disable_WITH_UnknownInstance_SHOULD_Throw()
         {
-            GameObject poolGameObject = new GameObject("TestPool");
+            GameObject poolGameObject = _manager.Instantiate("TestPool");
             var pool = poolGameObject.AddComponent<DummyPool>();
 
-            GameObject pooledPrefab = new GameObject("PooledPrefab");
+            GameObject pooledPrefab = _manager.Instantiate("PooledPrefab");
             var pooled = pooledPrefab.AddComponent<DummyPooled>();
 
             pool.prefab = pooled;
@@ -119,7 +127,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
 
             yield return null;
 
-            GameObject foreignObject = new GameObject("ForeignGameObject");
+            GameObject foreignObject = _manager.Instantiate("ForeignGameObject");
             var foreignInstance = foreignObject.AddComponent<DummyPooled>();
 
             Assert.Throws<ArgumentException>(() => pool.Disable(foreignInstance));
@@ -128,10 +136,10 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator Disable_WITH_InstanceFromAnotherType_SHOULD_Throw()
         {
-            GameObject poolGameObject = new GameObject("TestPool");
+            GameObject poolGameObject = _manager.Instantiate("TestPool");
             var pool = poolGameObject.AddComponent<DummyPool>();
 
-            GameObject pooledPrefab = new GameObject("PooledPrefab");
+            GameObject pooledPrefab = _manager.Instantiate("PooledPrefab");
             var pooled = pooledPrefab.AddComponent<DummyPooled>();
 
             pool.prefab = pooled;
@@ -139,7 +147,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
 
             yield return null;
 
-            GameObject foreignObject = new GameObject("ForeignGameObject");
+            GameObject foreignObject = _manager.Instantiate("ForeignGameObject");
             var foreignInstance = foreignObject.AddComponent<ForeignType>();
 
             Assert.Throws<ArgumentException>(() => pool.Disable(foreignInstance));
@@ -148,10 +156,10 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator Disable_WITH_InstanceAlreadyDisabled_SHOULD_Throw()
         {
-            GameObject poolGameObject = new GameObject("TestPool");
+            GameObject poolGameObject = _manager.Instantiate("TestPool");
             var pool = poolGameObject.AddComponent<DummyPool>();
 
-            GameObject pooledPrefab = new GameObject("PooledPrefab");
+            GameObject pooledPrefab = _manager.Instantiate("PooledPrefab");
             var pooled = pooledPrefab.AddComponent<DummyPooled>();
 
             pool.prefab = pooled;
@@ -163,16 +171,16 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
             yield return null;
             pool.Disable(instance);
 
-            Assert.Throws<InvalidOperationException>(() => pool.Disable(instance));
+            Assert.Throws<ArgumentException>(() => pool.Disable(instance));
         }
 
         [UnityTest]
         public IEnumerator Disable_WITH_Null_SHOULD_Throw()
         {
-            GameObject poolGameObject = new GameObject("TestPool");
+            GameObject poolGameObject = _manager.Instantiate("TestPool");
             var pool = poolGameObject.AddComponent<DummyPool>();
 
-            GameObject pooledPrefab = new GameObject("PooledPrefab");
+            GameObject pooledPrefab = _manager.Instantiate("PooledPrefab");
             var pooled = pooledPrefab.AddComponent<DummyPooled>();
 
             pool.prefab = pooled;
@@ -186,10 +194,10 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Pools
         [UnityTest]
         public IEnumerator OnDestroy_WITH_NoArg_SHOULD_DestroyAllInstances()
         {
-            GameObject poolGameObject = new GameObject("TestPool");
+            GameObject poolGameObject = _manager.Instantiate("TestPool");
             var pool = poolGameObject.AddComponent<DummyPool>();
 
-            GameObject pooledPrefab = new GameObject("PooledPrefab");
+            GameObject pooledPrefab = _manager.Instantiate("PooledPrefab");
             var pooled = pooledPrefab.AddComponent<DummyPooled>();
 
             pool.prefab = pooled;

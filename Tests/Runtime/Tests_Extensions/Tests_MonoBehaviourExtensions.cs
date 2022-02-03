@@ -10,10 +10,18 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
 {
     public class Tests_MonoBehaviourExtensions
     {
+        private readonly GameObjectManager _manager = new GameObjectManager();
+
+        [TearDown]
+        public void TearDown()
+        {
+            _manager.DestroyAll();
+        }
+
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_ValidComponent_SHOULD_ReturnOtherComponent()
         {
-            var gameObj = new GameObject("TestGameObject");
+            var gameObj = _manager.Instantiate("TestGameObject");
             var foo = gameObj.AddComponent<FooComponent>();
             gameObj.AddComponent<BarComponent>();
 
@@ -31,7 +39,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_ValidInterface_SHOULD_ReturnInterface()
         {
-            var gameObj = new GameObject("TestGameObject");
+            var gameObj = _manager.Instantiate("TestGameObject");
             var bazComponent = gameObj.AddComponent<BazComponent>();
 
             yield return null;
@@ -47,7 +55,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_InvalidComponent_SHOULD_Throw()
         {
-            var gameObj = new GameObject("TestGameObject");
+            var gameObj = _manager.Instantiate("TestGameObject");
             var foo = gameObj.AddComponent<FooComponent>();
 
             yield return null;
@@ -58,7 +66,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_InvalidInterface_SHOULD_Throw()
         {
-            var gameObj = new GameObject("TestGameObject");
+            var gameObj = _manager.Instantiate("TestGameObject");
             var foo = gameObj.AddComponent<FooComponent>();
 
             yield return null;
@@ -69,7 +77,7 @@ namespace Packages.UniKit.Tests.Runtime.Tests_Extensions
         [UnityTest]
         public IEnumerator GetOrThrow_WITH_DestroyedGameObject_SHOULD_Throw()
         {
-            var gameObj = new GameObject("TestGameObject");
+            var gameObj = _manager.Instantiate("TestGameObject");
             var foo = gameObj.AddComponent<FooComponent>();
             gameObj.AddComponent<BarComponent>();
 

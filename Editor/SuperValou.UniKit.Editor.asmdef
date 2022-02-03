@@ -1,0 +1,17 @@
+{
+    "name": "SuperValou.UniKit.Editor",
+    "references": [
+        "GUID:aeb30faf251d8f540a8571276d057fc5"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
